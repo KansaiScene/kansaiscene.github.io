@@ -1,1 +1,1 @@
-# KansaiScene Developer Documentation
+# Kansaiscene Developer Portal
