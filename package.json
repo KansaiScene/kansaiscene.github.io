@@ -1,0 +1,17 @@
+{
+  "name": "kansai-scene-api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "API for kansai scene",
+  "author": "KansaiScene",
+  "license": "cc-by-nc-nd",
+  "scripts": { 
+    "dev": "env WATCH=true npm run build & node -e \"setTimeout(function(){require('open')('http://localhost:3000')}, 2000)\" & wait",
+    "build": "aglio -i api.apib -o index.html -t ../../../template/flatly-collapsible $(envif WATCH -s)"
+  },
+  "dependencies": {
+    "aglio": "^1.14.0",
+    "envif": "^1.0.0",
+    "open": "0.0.5"
+  }
+}
