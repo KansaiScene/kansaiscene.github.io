@@ -1,0 +1,586 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>API Documentation</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css"><link rel="shortcut icon" href="favicon.png"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>pre code{display:block;padding:.5em;color:#333}
+/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>a,
+a:hover {
+  color: #d63f08;
+}
+body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+h1 {
+  font-size: 2em;
+}
+h1 img {
+  vertical-align: baseline;
+  margin-bottom: -6px;
+  margin-right: 11px;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  margin-left: 3px;
+  background-color: rgba(255,255,255,0.7);
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item:hover {
+  background-color: #f8f8f8;
+  border-left: 2px solid #555;
+  padding-left: 15px;
+}
+.indent {
+  display: block;
+  text-indent: 16px;
+}
+.list-group-item {
+  padding-left: 16px;
+}
+.list-group-item .toggle .open {
+  display: block;
+}
+.list-group-item .toggle .closed {
+  display: none;
+}
+.list-group-item.collapsed .toggle .open {
+  display: none;
+}
+.list-group-item.collapsed .toggle .closed {
+  display: block;
+}
+a.list-group-item:hover {
+  background-color: #f5f5f5;
+  border-left-color: #555;
+}
+a.list-group-item {
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  font-size: 15px;
+  background-color: #ecf0f1;
+}
+a.list-group-item.heading:hover {
+  background-color: #f5f5f5;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+.list-group-item a span.closed {
+  display: none;
+}
+.list-group-item a span.open {
+  display: block;
+}
+#user-content {
+  display: none;
+  padding: 10px 15px;
+  background: #f8f8f8;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+#user-content h3 {
+  margin-top: 0;
+}
+#user-content a {
+  display: block;
+  cursor: pointer;
+}
+#user-content label {
+  display: block;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+#user-content button {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+#user-content .messages div {
+  background: #dfd;
+  padding: 5px;
+  display: block;
+}
+.list-group-item a.collapsed span.closed {
+  display: block;
+}
+.list-group-item a.collapsed span.open {
+  display: none;
+}
+#nav {
+  width: inherit;
+  margin-top: 38px;
+  max-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+footer ul,
+footer li {
+  list-style-type: none;
+  padding: 0;
+}
+#user-content label[for="agreed"] {
+  font-weight: normal;
+  display: inline-block;
+  font-size: 0.9em;
+  margin-left: 0.5em;
+}
+#user-content label[for="agreed"] a {
+  display: inline;
+}
+input[type="checkbox"] {
+  display: inline-block;
+}
+.additional h3:first-child {
+  display: none;
+}
+@media (max-width: 1199px) {
+  #nav {
+    max-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"> <div id="user-content"><form id="user-login"><h3>Login    </h3><div class="messages"><div class="send-success">Successfully sent!</div><div class="successfully-reset">Successfully reset the password! Please log in.</div><div class="reset-request-sent">An email with a reset-link should arrive soon!</div><div class="signed-up">Thank you for registering. You should receive a mail to activate your account.</div><div class="activated">Your account has been activated! Please log in.</div></div><label for="email">Email</label><input type="text" name="email" class="email"><label for="password">Password</label><input type="password" name="password" class="password"><button type="submit" class="login">Login</button><a class="register">Sign-up</a><a class="reset">Forgot Password?</a><div class="error"><div class="error-email">Please enter your email address.</div><div class="error-password">Please enter your password.</div><div class="error-responseJson">Login seems to be broken. (1)</div><div class="error-request">Login seems to be broken. (2)</div><div class="error-credentials">Invalid credentials.</div></div></form><form id="user-register"><h3>Sign-up</h3><label for="email">Email</label><input type="text" name="email" class="email"><label for="password">Password</label><input type="password" name="password" class="password"><label for="password2">Password Confirmation</label><input type="password" name="password2" class="password2"><br><input type="checkbox" name="agreed" class="agreed"><label for="agreed">I agree to the <a href="/#page:terms-of-use">Terms of Use</a></label><br><button type="submit" class="register">Sign-up</button><a class="cancel">Cancel</a><div class="error"><div class="error-notAgreed">Please agree to the terms (by checking the check-box).</div><div class="error-email">Please enter a valid email address.</div><div class="error-password">Please enter a password that has at least 8 characters.</div><div class="error-passwordNoMatch">The passwords don't match.</div><div class="error-userExists">This user has already be registered.</div><div class="error-unspecified">Could'nt register.</div></div></form><form id="user-password-reset"><h3>Reset Password</h3><label for="email">Email</label><input type="text" name="email" class="email"><button type="submit" class="reset">Request reset</button><a class="cancel">Cancel</a><div class="error"><div class="error-email">Please enter a valid email address.</div><div class="error-unspecified">Could'nt reset the password. Maybe the user doesn't exist?</div></div></form><form id="user-password-reset-continue"><h3>New Password</h3><label for="email">Email</label><input type="text" name="email" class="email"><label for="email">Token</label><input type="text" name="token" class="token"><label for="password">Password</label><input type="password" name="password" class="password"><label for="password2">Password Confirmation</label><input type="password" name="password2" class="password2"><button type="submit" class="reset">Change Password</button><a class="cancel">Cancel</a><div class="error"><div class="error-email">Please enter a valid email address.</div><div class="error-password">Please enter a password that has at least 8 characters.</div><div class="error-passwordNoMatch">The passwords don't match.</div><div class="error-noToken">The token is missing.</div><div class="error-unspecified">Could'nt reset the password. Maybe the token is wrong?</div></div></form><div id="user-data"><h3>Welcome!</h3><span data-hook="email"></span><label>Application Token:</label><pre data-hook="token"></pre><a class="logout">Logout</a><a title="Warning! The old application token becomes invalid!" class="refresh">New application token</a></div></div><div class="list-group"><a href="#" class="list-group-item heading">About</a></div><div class="list-group"><a data-toggle="" data-target="#page:general-information-menu" href="#page:general-information" class="list-group-item heading collapsed">General Information</a><div id="page:general-information-menu"><a href="#page:general-information,header:general-information-support" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">Support</a><a href="#page:general-information,header:general-information-license" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">License</a><a href="#page:general-information,header:general-information-user-agent" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">User-Agent</a><a href="#page:general-information,header:general-information-jsonp" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">JSONP</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:authentication-menu" href="#page:authentication" class="list-group-item heading collapsed">Authentication</a><div id="page:authentication-menu"><a href="#page:authentication,header:authentication-access-token" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Access Token</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:articles-menu" href="#page:articles" class="list-group-item heading collapsed">Articles</a><div id="page:articles-menu"><a href="#page:articles,header:articles-article-categories" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Article Categories</a><a href="#page:articles,header:articles-article" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Article</a><a href="#page:articles,header:articles-articles" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Articles</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:classifieds-menu" href="#page:classifieds" class="list-group-item heading collapsed">Classifieds</a><div id="page:classifieds-menu"><a href="#page:classifieds,header:classifieds-classified-category" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Classified Category</a><a href="#page:classifieds,header:classifieds-classified" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Classified</a><a href="#page:classifieds,header:classifieds-reply-to-a-classified" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Reply to a classified</a><a href="#page:classifieds,header:classifieds-classifieds" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Classifieds</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:events-menu" href="#page:events" class="list-group-item heading collapsed">Events</a><div id="page:events-menu"><a href="#page:events,header:events-event-categories" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Event Categories</a><a href="#page:events,header:events-event" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Event</a><a href="#page:events,header:events-events" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Events</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:places-menu" href="#page:places" class="list-group-item heading collapsed">Places</a><div id="page:places-menu"><a href="#page:places,header:places-place" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Place</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:author-menu" href="#page:author" class="list-group-item heading collapsed">Author</a><div id="page:author-menu"><a href="#page:author,header:author-author" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Author</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:images-menu" href="#page:images" class="list-group-item heading collapsed">Images</a><div id="page:images-menu"><a href="#page:images,header:images-retrieve-images" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Retrieve images</a></div></div><div class="list-group"><a data-toggle="" data-target="#page:terms-of-use-menu" href="#page:terms-of-use" class="list-group-item heading collapsed">Terms of Use</a></div><div class="list-group"><a data-toggle="" data-target="#page:attribution-menu" href="#page:attribution" class="list-group-item heading collapsed">Attribution Guidelines</a></div><div class="list-group"><a data-toggle="" data-target="#page:branding-guide-menu" href="#page:branding-guide" class="list-group-item heading collapsed">Branding Guide</a></div></nav></div><div class="col-md-8"><header><div class="page-header"><h1 id="top"><img src="KS-logo-2014.png" title="KansaiScene" width="300">API Documentation</h1></div></header><div data-bind="visible: page() == 'home'"><div class="description"><p><h1>About the Kansai Scene API</h1></p>
+<p>The Kansai Scene API is a service for developers who want to utilize the vast and useful information related to English language events, places and articles owned by Kansai Scene to create new content.</p>
+<p>An Access Token is required to use the Kansai Scene API.</p>
+<p><h2>Service details</h2></p>
+<p>The Kansai Scene API includes categorized English language event information (Events), articles about various themes and aspects of life in Kansai and Japan, including the author of the work (Articles + Authors), business location listings for the Kansai area (Places) and classified advertisements (Classifieds).</p>
+<p><h3>Provided data</h3></p>
+<p>Events, Articles, Places, Classifieds, Authors.</p>
+<p>See our <a href="https://dev.kansaiscene.com/#page:terms-of-use">Terms of Use</a> for licensing and restrictions and our <a href="https://dev.kansaiscene.com/#page:attribution">Attribution Guidelines</a> for details on the required accreditation to Kansai Scene for content provided by this API.</p>
+</div><a href="#page:general-information" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'general-information', style: {marginTop: page() == 'general-information' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="general-information">General Information&nbsp;<a href="#page:general-information"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="general-information-support">Support&nbsp;<a href="#page:general-information,header:general-information-support"><i class="fa fa-link"></i></a></h4><p>If you have any problems or questions, just raise an issue in the <a href="https://github.com/kansaiscene/kansaiscene.github.io/issues">github repository</a>.</p>
+<h4 id="general-information-license">License&nbsp;<a href="#page:general-information,header:general-information-license"><i class="fa fa-link"></i></a></h4><p>This documentation is licensed under the a <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+<p>To use the API you have to agree to <a href="https://dev.kansaiscene.com#terms">our terms</a>.</p>
+<h4 id="general-information-user-agent">User-Agent&nbsp;<a href="#page:general-information,header:general-information-user-agent"><i class="fa fa-link"></i></a></h4><p>Every request needs to have a <a href="http://en.wikipedia.org/wiki/User_agent">User Agent</a> specified!</p>
+<h4 id="general-information-jsonp">JSONP&nbsp;<a href="#page:general-information,header:general-information-jsonp"><i class="fa fa-link"></i></a></h4><p>It is possible to optionally append a <code>callback</code> query parameter to get the response as jsonp instead of json.</p>
+<h3>Caching significance of multiple id’s</h3>
+<p>For <a href="#articles-article">Articles</a>, <a href="#/classifieds-classified">Classifieds</a> and <a href="#events-event">Events</a> you have the option to pass-in multiple id’s. This allows you to access a lot of data at once. The resulting data however is ordered the same way you requested it. For the best performance it is recommended that the id’s are passed (if possible) in the same order.</p>
+</div></div><a href="#page:authentication" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'authentication', style: {marginTop: page() == 'authentication' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="authentication">Authentication&nbsp;<a href="#page:authentication"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>To access the Kansai Scene API, you will need register at <a href="https://dev.kansaiscene.com">https://dev.kansaiscene.com</a> and get an <em>Application Token</em>.</p>
+<p>With this token you will be able to lease an <em>Access Token</em>.</p>
+<p>You will need to pass the <em>Access Token</em> to any request henceforth as <strong>request header</strong>.</p>
+<p>Example:</p>
+<pre><code>$ curl https://api.kansaiscene.com/events -H &quot;Authorization Bearer xa29.6Muxs73xSmmRmJRldyhIsMf9ri6xtHuanyyUPCdl_Ia4fBhv5N9oTrQiZaCkDOSuGhfLF4Zfjtw6fA&quot;
+</code></pre>
+<h4 id="authentication-access-token">Access Token&nbsp;<a href="#page:authentication,header:authentication-access-token"><i class="fa fa-link"></i></a></h4><section id="authentication-access-token-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Lease an Access token</span></div><div style="float:left"><a href="#page:authentication,header:authentication-access-token-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/auth</code></div></div><div class="panel-body"><p>Leases an <em>Access Token</em> for limited use of the KansaiScene API.</p>
+<p>You need to pass the <code>application_token</code> to the API as a post-variable.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#a2866722066f7aed525d0b4ce7a6f154" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a2866722066f7aed525d0b4ce7a6f154" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>application_token&amp;<span class="hljs-list">{application_token}</span>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#39f5a65057003af3d4fe3e2e73b566ad" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="39f5a65057003af3d4fe3e2e73b566ad" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">access_token</span>": <span class="hljs-value"><span class="hljs-string">"xa29.6Muxs73xSmmRmJRldyhIsMf9ri6xtHuanyyUPCdl_Ia4fBhv5N9oTrQiZaCkDOSuGhfLF4Zfjtw6fA"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"Bearer"</span></span>,
+    "<span class="hljs-attribute">expires_in</span>": <span class="hljs-value"><span class="hljs-number">3600</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#04b9384ac5039d0cf11253ee9d789065" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="04b9384ac5039d0cf11253ee9d789065" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"unknown-application-token"</span>
+</span>}
+</code></pre></li></ul></section></div></div><a href="#page:articles" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:general-information" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'articles', style: {marginTop: page() == 'articles' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="articles">Articles&nbsp;<a href="#page:articles"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="articles-article-categories">Article Categories&nbsp;<a href="#page:articles,header:articles-article-categories"><i class="fa fa-link"></i></a></h4><p><em>Articles</em> have at least one category. To show a list or tree of those
+categories we provide you with this method that allows to display the
+details more thoroughly.</p>
+<section id="articles-article-categories-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">get all article categories</span></div><div style="float:left"><a href="#page:articles,header:articles-article-categories-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/article-categories</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d9ee8ea98b534345e6207fdc4aed494b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="d9ee8ea98b534345e6207fdc4aed494b" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"feature"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Feature"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"food-drink"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Food &amp; Drink"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"travel"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Travel"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"made-in-kansai"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Made in Kansai"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"news"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"News"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"business"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Business"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"kids-family"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Kids &amp; Family"</span></span>},
+    ]
+</span>}
+</code></pre></li></ul></section><h4 id="articles-article">Article&nbsp;<a href="#page:articles,header:articles-article"><i class="fa fa-link"></i></a></h4><p>An <em>Article</em> is a document that has been written by an author.</p>
+<section id="articles-article-get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#page:articles,header:articles-article-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/article?id={id}(,{?id},...)</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>One or more (up to 50) <code>id</code>'s of articles</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#660baceca145f8ddbc2bfdb7f2521932" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="660baceca145f8ddbc2bfdb7f2521932" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[{
+        "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-number">1250000400000</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2141"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Making a fine point"</span></span>,
+        "<span class="hljs-attribute">lead</span>": <span class="hljs-value"><span class="hljs-string">"In Sakai, the knives are a cut above. KS meets the men whose handiwork helps world-class chefs earn their stars..."</span></span>, 
+        "<span class="hljs-attribute">category_ids</span>": <span class="hljs-value">[<span class="hljs-string">"made-in-kansai"</span>, <span class="hljs-string">"featured"</span>]</span>,
+        "<span class="hljs-attribute">images</span>": <span class="hljs-value">[{
+                "<span class="hljs-attribute">image_id</span>": <span class="hljs-value"><span class="hljs-string">"31"</span></span>,
+                "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
+            </span>}, {
+                "<span class="hljs-attribute">image_id</span>": <span class="hljs-value"><span class="hljs-string">"32"</span></span>,
+                "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
+            </span>}]</span>,
+        "<span class="hljs-attribute">link</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">web</span>": <span class="hljs-value"><span class="hljs-string">"http://www.kansaiscene.com/2013/10/making-a-fine-point/"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">author_id</span>": <span class="hljs-value"><span class="hljs-string">"14"</span>
+    </span>}]
+</span>}
+</code></pre></li></ul></section><h4 id="articles-articles">Articles&nbsp;<a href="#page:articles,header:articles-articles"><i class="fa fa-link"></i></a></h4><section id="articles-articles-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">list of Article ids</span></div><div style="float:left"><a href="#page:articles,header:articles-articles-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/articles?category_id={?article_category_id}&amp;place_id={?place_id}&amp;orderBy={?orderBy}&amp;newer={?newer}&amp;older={?older}</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>article_category_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p><code>id</code> of the category for which to show the articles. Needs to be a <a href="#articles-article-categories">article category</a>. If not given it will show all events.</p>
+</dd><dt>place_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p><code>id</code> of the place for which to show articles</p>
+</dd><dt>orderBy</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-info default"><strong>Default:&nbsp;</strong><span>newest_featured</span></span>&nbsp;<p>Order for the articles to appear in.</p>
+<p><strong>Choices:&nbsp;</strong><code>newest</code> <code>oldest</code> <code>newest_featured</code> </p></dd><dt>newer</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Show only articles that are created after the given timestamp (seconds since 1.1.1970 UTC)</p>
+</dd><dt>older</dt><dd><code>itenger</code>&nbsp;<span>(optional)</span>&nbsp;<p>Show only articles that are created before a given timestamp (seconds since 1.1.1970 UTC)</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#8ee565155bb6bd8a0b282d827f439e91" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="8ee565155bb6bd8a0b282d827f439e91" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[<span class="hljs-string">"mystic-warlords-of-kaa-tournament"</span>, <span class="hljs-string">"lord-of-the-dance-1"</span>, <span class="hljs-string">"circque-de-soleil-2013-osa"</span>]
+</span>}
+</code></pre></li></ul></section></div></div><a href="#page:classifieds" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:authentication" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'classifieds', style: {marginTop: page() == 'classifieds' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="classifieds">Classifieds&nbsp;<a href="#page:classifieds"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="classifieds-classified-category">Classified Category&nbsp;<a href="#page:classifieds,header:classifieds-classified-category"><i class="fa fa-link"></i></a></h4><p>Classifieds have a category. To show a list or tree of those
+categories we provide you with this method that allows to display the
+details more thoroughly.</p>
+<section id="classifieds-classified-category-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get all Classified categories</span></div><div style="float:left"><a href="#page:classifieds,header:classifieds-classified-category-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/classified-categories</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c51da4d47ae71ad57acdae45ae365a94" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c51da4d47ae71ad57acdae45ae365a94" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"58"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Health Beauty"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"60"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Beauty"</span></span>, "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-string">"58"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"59"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Health"</span></span>, "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-string">"58"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Jobs"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"7"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Education"</span></span>, "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>}
+    ]
+</span>}
+</code></pre></li></ul></section><h4 id="classifieds-classified">Classified&nbsp;<a href="#page:classifieds,header:classifieds-classified"><i class="fa fa-link"></i></a></h4><p>A <em>Classified</em> is an advertising that can be placed and paid-for by anyone on the internet.</p>
+<section id="classifieds-classified-get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#page:classifieds,header:classifieds-classified-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/classified?id={classified_id}(,{?classified_id},...)</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>classified_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>One or more (up to 50) <code>id</code>'s of classifies that should be loaded.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#fd25996b0f7601b1bf4c37ab942ac6b5" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fd25996b0f7601b1bf4c37ab942ac6b5" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[{
+        "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-number">1419924610874</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"4510"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Part time english teacher"</span></span>,
+        "<span class="hljs-attribute">category_ids</span>": <span class="hljs-value">[<span class="hljs-string">"7"</span>]</span>,
+        "<span class="hljs-attribute">links</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">reply</span>": <span class="hljs-value"><span class="hljs-string">"https://kansai-scene.com/reply-to-ad/4510/part-time-english-teacher"</span></span>,
+            "<span class="hljs-attribute">web</span>": <span class="hljs-value"><span class="hljs-string">"https://kansai-scene.com/show-ad/4510/part-time-english-teacher"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"We are search for an english teacher on wednesday. From 2:00pm to 9:00pm. 12000yen a day plus transportation. Our kindergarden is in Kita-ku Osaka, about 1 min walk from Nakatsu Station."</span>
+    </span>}]
+</span>}
+</code></pre></li></ul></section><h4 id="classifieds-reply-to-a-classified">Reply to a classified&nbsp;<a href="#page:classifieds,header:classifieds-reply-to-a-classified"><i class="fa fa-link"></i></a></h4><section id="classifieds-reply-to-a-classified-post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#page:classifieds,header:classifieds-reply-to-a-classified-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/classified/{classified_id}/reply</code></div></div><div class="panel-body"><p>It is required to pass responders <code>name</code>, <code>email</code> and <code>message</code> as post variable to the API.</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>classified_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The ID of the classified to respond to.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#1591f45a802cf20714c3351401c7f8ce" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="1591f45a802cf20714c3351401c7f8ce" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/x-www-form-urlencoded</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-property">name</span>={<span class="hljs-property">name</span>}&amp;email={email}&amp;message={message} (<span class="hljs-type">string</span>)
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#e44760a4f9d3d90bffa1a40af98f8dc4" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e44760a4f9d3d90bffa1a40af98f8dc4" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+</span>}
+</code></pre></li></ul></section><h4 id="classifieds-classifieds">Classifieds&nbsp;<a href="#page:classifieds,header:classifieds-classifieds"><i class="fa fa-link"></i></a></h4><section id="classifieds-classifieds-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">list of Classifieds ids</span></div><div style="float:left"><a href="#page:classifieds,header:classifieds-classifieds-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/classifieds?category_id={?classified_category_id}&amp;orderBy={?orderBy}&amp;newer={?newer}&amp;older={?older}</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>classified_category_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p><code>id</code> of the category for which to show the classifieds. Needs to be a <a href="#classified-classified-categories">classified category</a>. If not given it will show all classifieds.</p>
+</dd><dt>orderBy</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-info default"><strong>Default:&nbsp;</strong><span>newest</span></span>&nbsp;<p>Order for the items to appear in.</p>
+<p><strong>Choices:&nbsp;</strong><code>newest</code> <code>oldest</code> </p></dd><dt>newer</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Show only classifieds that have been created after the specified timestamp (seconds since 1.1.1970 UTC)</p>
+</dd><dt>older</dt><dd><code>itenger</code>&nbsp;<span>(optional)</span>&nbsp;<p>Show only classifieds that have been created before the specified timestamp (seconds since 1.1.1970 UTC)</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9755ae7ba8f1e855d3781d79517fd093" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9755ae7ba8f1e855d3781d79517fd093" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[<span class="hljs-string">"4510"</span>, <span class="hljs-string">"6503"</span>, <span class="hljs-string">"15"</span>, <span class="hljs-string">"123"</span>, <span class="hljs-string">"4501"</span>]
+</span>}
+</code></pre></li></ul></section></div></div><a href="#page:events" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:articles" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'events', style: {marginTop: page() == 'events' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="events">Events&nbsp;<a href="#page:events"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="events-event-categories">Event Categories&nbsp;<a href="#page:events,header:events-event-categories"><i class="fa fa-link"></i></a></h4><p>Events have a category. To show a list or tree of those
+categories we provide you with this method that allows to display the
+details more thoroughly.</p>
+<section id="events-event-categories-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get all Event categories</span></div><div style="float:left"><a href="#page:events,header:events-event-categories-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/event-categories</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6bbd4712a350bcdd342a2bff67e70b5b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="6bbd4712a350bcdd342a2bff67e70b5b" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"art"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Art"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"live"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Live"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"classical"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Classical"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"club"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Club"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"event"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Event"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"festival"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Festival"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"sport"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Sport"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"cinemas"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Cinemas"</span></span>},
+        {"<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"featured"</span></span>, "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Featured"</span></span>}
+    ]
+</span>}
+</code></pre></li></ul></section><h4 id="events-event">Event&nbsp;<a href="#page:events,header:events-event"><i class="fa fa-link"></i></a></h4><p>An <em>Event</em> represents an event happing at a time and day.</p>
+<p>Every event happens at a location that can be fetched using the <a href="#places">Places API</a>.</p>
+<p>Events do have a <code>start</code> and <code>end</code> time. The <code>end</code> time is never before the <code>start</code> time.</p>
+<p>The <code>cost</code> is a free-text field that the author of an event can use to define the price of an event. Often the currency is mentioned in the text. If its not mentioned it is assumed as <a href="http://en.wikipedia.org/wiki/Japanese_yen"><code>JPY</code></a>. <code>cost</code> can be <code>null</code>.</p>
+<p>Every event also has categories. The available categories can be fetched using the <a href="#events-event-categories">Event Categories API</a>.</p>
+<p>The <code>images</code> provided in the response represent a list of images to the event. To download the images, use the <a href="#images">Images API</a>. Every <code>image</code> can also have a comment.</p>
+<section id="events-event-get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#page:events,header:events-event-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/event?id={id}(,{?id},...)</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>One or more (up to 50) <code>id</code>'s of events</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#dda4d90540a03a86823145f1193f5ed9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="dda4d90540a03a86823145f1193f5ed9" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[{
+        "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-number">1250000400000</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"mystic-warlords-of-kaa-tournament"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Mystic Warlords of Ka'a tournament"</span></span>,
+        "<span class="hljs-attribute">category_ids</span>": <span class="hljs-value">[<span class="hljs-string">"event"</span>, <span class="hljs-string">"featured"</span>]</span>,
+        "<span class="hljs-attribute">images</span>": <span class="hljs-value">[{
+                "<span class="hljs-attribute">image_id</span>": <span class="hljs-value"><span class="hljs-string">"17"</span></span>,
+                "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-string">"Last tournament winner."</span>
+            </span>}, {
+                "<span class="hljs-attribute">image_id</span>": <span class="hljs-value"><span class="hljs-string">"21"</span></span>,
+                "<span class="hljs-attribute">comment</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
+            </span>}]</span>,
+        "<span class="hljs-attribute">start</span>": <span class="hljs-value"><span class="hljs-number">1256000400000</span></span>,
+        "<span class="hljs-attribute">end</span>": <span class="hljs-value"><span class="hljs-number">1256007600000</span></span>,
+        "<span class="hljs-attribute">place_id</span>": <span class="hljs-value"><span class="hljs-string">"4120"</span></span>,
+        "<span class="hljs-attribute">cost</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Let's play the awesome cardgame in a comic shop environment. Even local celebrities will compete in the most awesome MWOK tournament around town."</span>
+    </span>}]
+</span>}
+</code></pre></li></ul></section><h4 id="events-events">Events&nbsp;<a href="#page:events,header:events-events"><i class="fa fa-link"></i></a></h4><section id="events-events-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">list of Event ids</span></div><div style="float:left"><a href="#page:events,header:events-events-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/events?category_id={?event_category_id}&amp;place_id={?place_id}&amp;orderBy={?orderBy}&amp;newer={?newer}&amp;older={?older}</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>event_category_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p><code>id</code> of the category for which to show the events. Needs to be a <a href="#events-event-categories">event category</a>. If not given it will show all events.</p>
+</dd><dt>place_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p><code>id</code> of the place for which to show events</p>
+</dd><dt>orderBy</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-info default"><strong>Default:&nbsp;</strong><span>newest_featured</span></span>&nbsp;<p>Order for the items to appear in.</p>
+<p><strong>Choices:&nbsp;</strong><code>newest</code> <code>oldest</code> <code>newest_featured</code> </p></dd><dt>newer</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Show only events that are created after the given timestamp (seconds since 1.1.1970 UTC)</p>
+</dd><dt>older</dt><dd><code>itenger</code>&nbsp;<span>(optional)</span>&nbsp;<p>Show only events that are created before a given timestamp (seconds since 1.1.1970 UTC)</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#70127ca50f84bfa8127ddbd0689ab0c5" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="70127ca50f84bfa8127ddbd0689ab0c5" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[<span class="hljs-string">"mystic-warlords-of-kaa-tournament"</span>, <span class="hljs-string">"lord-of-the-dance-1"</span>, <span class="hljs-string">"circque-de-soleil-2013-osa"</span>]
+</span>}
+</code></pre></li></ul></section></div></div><a href="#page:places" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:classifieds" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'places', style: {marginTop: page() == 'places' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="places">Places&nbsp;<a href="#page:places"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="places-place">Place&nbsp;<a href="#page:places,header:places-place"><i class="fa fa-link"></i></a></h4><p>An <em>Place</em> is information about a physical location at which <a href="#events">events</a> can happen.</p>
+<section id="places-place-get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#page:places,header:places-place-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/place?id={id}(,{?id},...)</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>One or more (up to 50) <code>id</code>'s of places</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#be51576ece3ab0c490bfe0812f40ba20" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="be51576ece3ab0c490bfe0812f40ba20" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[{
+        "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-number">1250000400000</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"4120"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Comic Book Store"</span></span>,
+        "<span class="hljs-attribute">address</span>":<span class="hljs-value"><span class="hljs-string">"#204 (2F) Takeda building T1"</span></span>,
+        "<span class="hljs-attribute">address2</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">city</span>":<span class="hljs-value"><span class="hljs-string">"Osaka"</span></span>,
+        "<span class="hljs-attribute">prefecture</span>":<span class="hljs-value"><span class="hljs-string">"Suita"</span></span>,
+        "<span class="hljs-attribute">postal_code</span>":<span class="hljs-value"><span class="hljs-string">"564-0062"</span></span>,
+        "<span class="hljs-attribute">lat</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">lng</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">email</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">telephone</span>":<span class="hljs-value"><span class="hljs-string">"06-6389-2006"</span></span>,
+        "<span class="hljs-attribute">link</span>":<span class="hljs-value">{
+            "<span class="hljs-attribute">web</span>": <span class="hljs-value"><span class="hljs-string">"https:\/\/www.facebook.com\/yoshoyajp"</span></span>}
+        </span>},
+        <span class="hljs-string">"event_ids"</span>: [<span class="hljs-string">"mystic-warlords-of-kaa-tournament"</span>]
+    }]
+</span>}
+</code></pre></li></ul></section></div></div><a href="#page:author" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:events" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'author', style: {marginTop: page() == 'author' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="author">Author&nbsp;<a href="#page:author"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="author-author">Author&nbsp;<a href="#page:author,header:author-author"><i class="fa fa-link"></i></a></h4><p>An <em>Author</em> is a person that wrote an article.</p>
+<section id="author-author-get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#page:author,header:author-author-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/author?id={id}(,{?id},...)</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>One or more (up to 50) <code>id</code>'s of authors</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#3accfa6352bc3d68118d8574f4a612e0" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="3accfa6352bc3d68118d8574f4a612e0" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">[{
+        "<span class="hljs-attribute">created</span>": <span class="hljs-value"><span class="hljs-number">1250000400000</span></span>,
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"4120"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Sam Evans"</span></span>,
+        "<span class="hljs-attribute">gravatar_id</span>": <span class="hljs-value"><span class="hljs-string">"d41e8cf98f10b234e9800998ecf8427e"</span>
+    </span>}]
+</span>}
+</code></pre></li></ul></section></div></div><a href="#page:images" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:places" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'images', style: {marginTop: page() == 'images' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="images">Images&nbsp;<a href="#page:images"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="images-retrieve-images">Retrieve images&nbsp;<a href="#page:images,header:images-retrieve-images"><i class="fa fa-link"></i></a></h4><p>To get an image you need to specify the <code>image_id</code> and the <code>size_format</code>. There are currently following formats available:</p>
+<ul>
+<li><p><code>original</code> The biggest size in which the image is available</p></li>
+<li><p><code>small_banner</code> Fixed size 317x130 (will be cropped or streched)</p></li>
+<li><p><code>thumb</code> Fixed size 80x55 (will be cropped or stretched)</p></li>
+<li><p><code>banner</code> Fixed size 700x370 (will be cropped or stretched)</p></li>
+</ul>
+<p>It is possible that the API will send a redirect to the actual image url.</p>
+<section id="images-retrieve-images-get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#page:images,header:images-retrieve-images-get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/image/{image_id}/{?size_format}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>302</code></strong></li></ul></section></div></div><a href="#page:author" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'terms-of-use', style: {marginTop: page() == 'terms-of-use' ? '38px' : ''}" class="additional"><h3 id="kansai-scene-api">Kansai Scene API</h3>
+<h1 id="terms-of-use">Terms of Use</h1>
+<p>Thank you for using the Kansai Scene application programming interfaces (the &quot;KS APIs&quot;). </p>
+<p>By using the KS APIs, you agree to these terms of use (the &quot;Terms of Use&quot;) and the kansaiscene.com Terms of Service (&quot;Terms of Service&quot;) located at <a href="https://www.kansaiscene.com/terms-of-service">https://www.kansaiscene.com/terms-of-service</a>. If you disagree with any of the terms below or the KS Terms of Service, KS does not grant you a license to use the KS APIs. In the event of any inconsistency between these Terms of Use and the Terms of Service, these Terms of Use control.</p>
+<p>Kansai Scene (&quot;KS&quot;) reserves the right to update and change, from time to time, these Terms of Use and all documents incorporated by reference. You can always find the most recent version of these Terms of Use at <a href="https://dev.kansaiscene.com/#page:terms-of-use">https://dev.kansaiscene.com/#page:terms-of-use</a>. KS may change these Terms of Use by posting a new version without notice to you. Use of the KS APIs after such change constitutes acceptance of such changes.</p>
+<h2 id="1-licensed-uses-and-restrictions-">1. LICENSED USES AND RESTRICTIONS.</h2>
+<p>The KS APIs are owned by KS and are licensed to you on a worldwide (except as limited below), non-exclusive, non-sublicensable basis on the terms and conditions set forth herein. These Terms of Use define legal use of the KS APIs, all updates, revisions, substitutions, and any copies of the KS APIs made by or for you. All rights not expressly granted to you are reserved by KS.</p>
+<ol style="list-style-type: lower-latin">
+  <li>
+    <p>Subject to the restrictions set forth in these Terms of Use, you may use the KS APIs and any updates provided by KS (in its sole discretion). Your license to use the KS APIs under these Terms of Use continues until it is terminated by either party.</p>
+    <p>You may terminate the license by discontinuing use of all or any of the KS APIs.</p>
+    <p>KS may terminate the license at any time for any reason. These Terms of Use terminate automatically if</p>
+    <ol style="list-style-type: lower-roman">
+      <li>you violate any term of these Terms of Use,</li>
+      <li>KS publicly posts a written notice of termination on the KS Developer   Network, currently located at <a href="https://dev.kansaiscene.com">https://dev.kansaiscene.com</a></li>
+      <li>KS sends a written notice of termination to you, or</li>
+      <li>KS ceases providing access to the KS APIs to you.</li>
+    </ol>
+  </li>
+  <li>If your product or service uses or is based upon the KS APIs, then YOU SHALL comply with the attribution guidelines found at <a href="https://dev.kansaiscene.com/#page:attribution">https://dev.kansaiscene.com/#page:attribution</a></li>
+  <li>YOU SHALL use instructions provided in the KS APIs to place application identification information (the API key) into any application or service you develop that incorporates or makes any use of the KS APIs.  You may only create a single API key per application or service and such API key must accompany all web services requests coming from that application or service. You can sign up for an API key at <a href="https://dev.kansaiscene.com/">https://dev.kansaiscene.com/</a>. You must provide accurate identification, contact, and other information required as part of the registration process. You SHALL NOT create any script or other automated tool that attempts to create multiple API keys.</li>
+  <li>If you wish to confirm that your application constitutes an acceptable use of the KS APIs or wish to inquire about rate limit increases, register your application with us.</li>
+  <li>YOU SHALL NOT:
+    <ol style="list-style-type: lower-roman">
+      <li>use the KS APIs for any commercial purpose or in any product or service that competes with products or services offered by KS. For more details on what we consider to be commercial purposes, see the API FAQ.</li>
+      <li>use the KS APIs in any manner or for any purpose that violates any law or regulation, any right of any person, including but not limited to intellectual property rights, rights of privacy, or rights of personality, or in any manner inconsistent with the kansaiscene.com Terms of Service or these Terms of Use;</li>
+      <li>sell, lease, share, transfer, or sublicense the KS APIs or access or access codes thereto or derive income from the use or provision of the KS APIs, whether for direct commercial or monetary gain or otherwise, without KS&#39;s prior, express, written permission;</li>
+      <li>use the KS APIs in a manner that exceeds reasonable request volume, constitutes excessive or abusive usage, or otherwise fails to comply or is inconsistent with any part of the KS API documentation located within <a href="https://dev.kansaiscene.com">https://dev.kansaiscene.com</a> as determined by KS in its sole discretion; or</li>
+      <li>use the KS APIs in connection with or to promote any products, services, or materials that constitute, promote or are used primarily for the purpose of dealing in: spyware, adware, or other malicious programs or code, hate materials (e.g. Nazi memorabilia) or materials urging acts of terrorism or violence, hacking/surveillance/interception/ descrambling equipment, gambling items or non-transferable items such as airline tickets or event tickets.</li>
+    </ol></li>
+  <li>Browser Based Authentication. If you also elect to use a browser-based authentication API that may be provided by the Kansai Scene, the terms of this Section 1(f) also applies to You.
+    <ol style="list-style-type: lower-roman">
+      <li>KS takes end user security and privacy very seriously, and You agree to give us all necessary assistance for the operation of Your Application in compliance with these TOU and any applicable laws.</li>
+      <li>Securing User Consent. You are solely responsible for securing clear, express consent from the user, granting You permission to access such user&#39;s KS account using authentication API, including if applicable, retrieving user-specific information, or writing information to such user&#39;s account. You will strictly comply with the scope of express consent they granted You when accessing such user&#39;s KS account.</li>
+      <li>Contact and Cooperation. You (or the name of the contact You gave to KS when You applied for Your API key for review if it&#39;s not You) must be reachable at all times for security questions or concerns. You can change this name or contact by signing up for a new API key, and providing the correct contact information and using the new API key instead. <a href="https://dev.kansaiscene.com">https://dev.kansaiscene.com</a></li>
+      <li>Virus Precautions. All materials, including software and documents, that You provide to KS, must be checked with Internet industry standard up-to-date antivirus and anti-worm software, and determined to be virus-free and worm-free. Any data provided to KS must not contain harmful scripts or code.</li>
+      <li>Industry Standards. Your networks, operating system and software of its web server(s), routers, databases, and computer systems must be properly configured to Internet industry best practice standards, as required to securely operate Your Application. If You do not completely control any aspect of the System, You will use all control or influence that You have over such Systems and/or selection of Systems, and You will not architect or select Systems in a manner to avoid the foregoing obligation. An example of an unacceptable server is one that operates as open proxy. An example of architecting in an unacceptable manner would be if You select a server operated by a vendor with substandard security practices, so that You could contend that You do not control such server, in order to avoid having to select an acceptable server.</li>
+      <li>Reporting. You must promptly report any security deficiencies in or intrusions to Your Systems that You discover to KS in writing via email to dev@kansaiscene.com. You will work with KS to immediately correct any security deficiency, and will disconnect immediately any intrusions or intruder. In the event of any such security deficiency or intrusion, You will make no public statements (i.e. press, blogs, bulletin boards, etc.) without prior written and express permission from KS in each instance.</li>
+      <li>Control Access to Systems. To the extent You have control or influence over the Systems, You will log (in a time and date-stamped fashion) all instances of access to the Systems. You will encrypt the password and username files for the Systems that store or process any KS user data that You are permitted by KS to access. Passwords must be unique, unintuitive, and changed often. You will minimize access to and use of the passwords. Wherever possible, commands which require additional privileges should be securely logged (with time and date) to enable a complete audit trail of activities. When an individual terminates his or her employment with You, his or her passwords and access password facilities must be terminated immediately.</li>
+      <li>Security Reviews. KS will have the right, at its own expense, to review, or to have an independent third party to inspect and review Your compliance with these security provisions. You will (at Your own expense) correct any security flaws detected by such a review as soon as possible. You will then promptly certify to KS in writing that the security flaw has been corrected, along with a description of the corrective action(s) taken. Any such review will be conducted during regular business hours in such a manner as not to interfere with normal business activities. If a review reveals a material breach of any of these security provisions, You will reimburse KS for the reasonable costs of the review.</li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="2-ownership-and-relationship-of-parties-">2. OWNERSHIP AND RELATIONSHIP OF PARTIES.</h2>
+<p>The KS APIs may be protected by copyrights, trademarks, service marks, international treaties, and/or other proprietary rights and laws of Japan and other countries. KS&#39;s rights apply to the KS APIs and all output and executables of the KS APIs, excluding any software components developed by you which do not themselves incorporate the KS APIs or any output or executables of the KS APIs. You agree to abide by all applicable proprietary rights laws and other laws, as well as any additional copyright notices or restrictions contained in these Terms of Use and in the kansaiscene.com Terms of Service. KS owns all rights, title, and interest in and to the KS APIs. These Terms of Use grant you no right, title, or interest in any intellectual property owned or licensed by KS, including (but not limited to) the KS APIs and KS trademarks.</p>
+<h2 id="3-support-">3. SUPPORT.</h2>
+<p>KS may elect to provide you with support or modifications for the KS APIs (collectively, &quot;Support&quot;), in its sole discretion, and may terminate such Support at any time without notice to you. KS may change, suspend, or discontinue any aspect of the KS APIs at any time, including the availability of any KS APIs. KS may also impose limits on certain features and services or restrict your access to parts or all of the KS APIs or the KS Web site without notice or liability. Please register your application for priority notification of status alerts.</p>
+<h2 id="4-fees-and-payments-">4. FEES AND PAYMENTS.</h2>
+<p>KS reserves the right to charge fees for future use of or access to the KS APIs or the KS services and Web sites (collectively, &quot;KS APIs Services&quot;) in KS&#39;s sole discretion. If KS decides to charge for the KS APIs Services, such charges will be disclosed to you prior.</p>
+<h2 id="5-disclaimer-of-any-warranty-">5. DISCLAIMER OF ANY WARRANTY.</h2>
+<p>SOME OF THE KS APIS ARE EXPERIMENTAL AND HAVE NOT BEEN TESTED IN ANY MANNER. KS DOES NOT REPRESENT OR WARRANT THAT ANY KS APIS ARE FREE OF INACCURACIES, ERRORS, BUGS, OR INTERRUPTIONS, OR ARE RELIABLE, ACCURATE, COMPLETE, OR OTHERWISE VALID.
+THE KS APIS ARE PROVIDED &quot;AS IS&quot; WITH NO WARRANTY, EXPRESS OR IMPLIED, OF ANY KIND AND KS EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AVAILABILITY, SECURITY, TITLE AND/OR NON-INFRINGEMENT.
+YOUR USE OF KS APIS IS AT YOUR OWN DISCRETION AND RISK, AND YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE THAT RESULTS FROM THE USE OF ANY KS APIS INCLUDING, BUT NOT LIMITED TO, ANY DAMAGE TO YOUR COMPUTER SYSTEM OR LOSS OF DATA.</p>
+<h2 id="6-limitation-of-liability-">6. LIMITATION OF LIABILITY.</h2>
+<p>KS SHALL NOT, UNDER ANY CIRCUMSTANCES, BE LIABLE TO YOU FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL OR EXEMPLARY DAMAGES ARISING OUT OF OR IN CONNECTION WITH USE OF THE KS APIS, WHETHER BASED ON BREACH OF CONTRACT, BREACH OF WARRANTY, TORT (INCLUDING NEGLIGENCE, PRODUCT LIABILITY OR OTHERWISE), OR ANY OTHER PECUNIARY LOSS, WHETHER OR NOT KS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. UNDER NO CIRCUMSTANCES SHALL KS BE LIABLE TO YOU FOR ANY AMOUNT.</p>
+<h2 id="7-exclusions-and-limitations-">7. EXCLUSIONS AND LIMITATIONS.</h2>
+<p>SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES. ACCORDINGLY, SOME OF THE ABOVE LIMITATIONS OF SECTIONS 5 AND 6 MAY NOT APPLY TO YOU.</p>
+<h2 id="8-release-and-waiver-">8. RELEASE AND WAIVER.</h2>
+<p>To the maximum extent permitted by applicable law, you hereby release and waive all claims against KS, and its subsidiaries, affiliates, officers, agents, licensors, co-branders or other partners, and employees from any and all liability for claims, damages (actual and/or consequential), costs and expenses (including litigation costs and attorneys&#39; fees) of every kind and nature, arising from or in any way related to your use of KS APIs. You understand that any fact relating to any matter covered by this release may be found to be other than now believed to be true and you accept and assume the risk of such possible differences in fact. In addition, you expressly waive and relinquish any and all rights and benefits which you may have under any other state or federal statute or common law principle of similar effect, to the fullest extent permitted by law.</p>
+<h2 id="9-hold-harmless-and-indemnity-">9. HOLD HARMLESS AND INDEMNITY.</h2>
+<p>To the maximum extent permitted by applicable law, you agree to hold harmless and indemnify KS and its subsidiaries, affiliates, officers, agents, licensors, co-branders or other partners, and employees from and against any third party claim arising from or in any way related to your use of KS APIs, including any liability or expense arising from all claims, losses, damages (actual and/or consequential), suits, judgments, litigation costs and attorneys&#39; fees, of every kind and nature. KS shall use good faith efforts to provide you with written notice of such claim, suit or action.</p>
+<h2 id="10-general-terms-">10. GENERAL TERMS.</h2>
+<ol style="list-style-type: lower-roman">
+  <li>Relationship of the Parties. Notwithstanding any provision hereof, for all purposes of the Terms of Use, you and KS shall be and act independently and not as partner, joint venturer, agent, employee or employer of the other. You shall not have any authority to assume or create any obligation for or on behalf of KS, express or implied, and you shall not attempt to bind KS to any contract.</li>
+  <li>Invalidity of Specific Terms. If any provision of the Terms of Use is found by a court of competent jurisdiction to be invalid, the parties nevertheless agree that the court should endeavor to give effect to the parties&#39; intentions as reflected in the provision and the other provisions of such documents remain in full force and effect.</li>
+  <li>Location of Lawsuit and Choice of Law. The Terms of Use and the relationship between you and KS shall be governed by the laws of Japan without regard to its conflict of law provisions. You and KS agree to submit to the personal jurisdiction of the Osaka District Court.</li>
+  <li>No Waiver of Rights by KS. KS&#39;s failure to exercise or enforce any right or provision of the Terms of Use shall not constitute a waiver of such right or provision.</li>
+  <li>Miscellaneous. The section headings and subheadings contained in this agreement are included for convenience only, and shall not limit or otherwise affect the terms of the Terms of Use. Any construction or interpretation to be made of the Terms of Use shall not be construed against the drafter. The Terms of Use constitute the entire agreement between KS and you with respect to the subject matter hereof.</li>
+</ol>
+
+<hr></div><div data-bind="visible: page() == 'attribution', style: {marginTop: page() == 'attribution' ? '38px' : ''}" class="additional"><h3 id="kansai-scene-api">Kansai Scene API</h3>
+<h1 id="attribution-guidelines">Attribution Guidelines</h1>
+<h2 id="attribution">ATTRIBUTION</h2>
+<p>Your use of any of the API content, whether served from your Web site or from a client application, must appropriately attribute Kansai Scene by adhering to the usage guidelines in Kansai Scene API Branding Guide.</p>
+<p>Any URLs that are delivered in the API content must link in each instance to the related Kansai Scene URL. You shall not display the API content in such a manner that does not allow for successful linking and redirection to, and delivery of, kansaiscene.com&#39;s Web page, nor may you frame any kansaiscene.com Web page.</p>
+<p>Read the <a href="https://dev.kansaiscene.com/#page:branding-guide">Kansai Scene API Branding Guide and get API logos</a>.</p>
+<p>Note: Please also read the API Terms of Use.</p>
+<h2 id="restrictions">RESTRICTIONS</h2>
+<p>Unless otherwise consented to or permitted by kansaiscene.com, you will:</p>
+<ol style="list-style-type: lower-roman">
+  <li>not modify or edit any content, headlines, links or metadata included in the API content when presenting it on your Site;</li>
+  <li>ensure that the fundamental meaning of the API content is not changed or distorted;</li>
+  <li>ensure that the use or display of API content does not suggest that Kansai Scene promotes or endorses you or any third party or the causes, ideas, Web sites, products or services of you or any third party;</li>
+  <li>not display the name, logo, trademark or other identifier of another person (except for kansaiscene.com or you) on your Site in such a manner as to give the viewer the impression that such other person is a publisher or distributor of the API content on the Site</li>
+  <li>not archive or cache any of the API content for access by users for more than 24 hours after you have finished using the service; or for any period of time if your account is terminated.</li>
+</ol>
+
+<p>For logos and additional branding requirements, see the <a href="https://dev.kansaiscene.com/#page:branding-guide">Kansai Scene API Branding Guide</a>.</p>
+<hr></div><div data-bind="visible: page() == 'branding-guide', style: {marginTop: page() == 'branding-guide' ? '38px' : ''}" class="additional"><h3 id="kansai-scene-api">Kansai Scene API</h3>
+<h1 id="branding-guide">Branding Guide</h1>
+<p>All applications must be accompanied by a Kansai Scene API logo on any page or screen that displays Kansai Scene API content or data. The logo must link directly to <a href="https://dev.kansaiscene.com/">https://dev.kansaiscene.com/</a>.</p>
+<p>For applications that do not easily support logos or where Kansai Scene data are used in alternative media formats, the written attribution &quot;Data provided by Kansai Scene&quot; can be substituted.</p>
+<p>Prior written consent from Kansai Scene is required to use Kansai Scene data without attribution.</p>
+<h2 id="api-logos">API LOGOS</h2>
+<p>API logos are provided in four different sizes. Select the logo that best suits the visual design and functionality of your site. Logos cannot be altered or resized.</p>
+<table>
+<thead>
+<tr>
+<th>200px</th>
+<th>150px</th>
+<th>65px</th>
+<th>30px</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/images/powered-by-KS-200px-color.png" alt="KS logo 200px color"></td>
+<td><img src="/images/powered-by-KS-150px-color.png" alt="KS logo 150px color"></td>
+<td><img src="/images/powered-by-KS-65px-color.png" alt="KS logo 65px color"></td>
+<td><img src="/images/powered-by-KS-30px-color.png" alt="KS logo 30px color"></td>
+</tr>
+<tr>
+<td><img src="/images/powered-by-KS-200px.png" alt="KS logo 200px greyscale"></td>
+<td><img src="/images/powered-by-KS-150px.png" alt="KS logo 150px greyscale"></td>
+<td><img src="/images/powered-by-KS-65px.png" alt="KS logo 65px greyscale"></td>
+<td><img src="/images/powered-by-KS-30px.png" alt="KS logo 30px greyscale"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="additional-branding-requirements">ADDITIONAL BRANDING REQUIREMENTS</h2>
+<p>The selected logo should be full and clearly visible, not altered or resized, or covered up in any way.</p>
+<p>The Kansai Scene logo should not be the most prominent element or logo on the Web page, nor the only branding on the page.</p>
+<p>Do not use the logo or text attribution in a way that would suggest that Kansai Scene promotes or endorses you or any third party or the causes, ideas, Web sites, products or services of you or any third party.</p>
+<p>Please also read the Attribution Requirements.</p>
+<hr></div><footer><ul><li><a href="#page:branding-guide">Branding Guide</a></li><li><a href="#page:terms-of-use">Terms of Use</a></li><li><a href="#page:attribution">Attribution Guidelines</a></li><li> <a href="https://kansaiscene.com" target="_blank">KansaiScene</a></li></ul></footer><script src="index.js"></script></div></div></div><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
+
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
+
+}).call(this);
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script><script>(function() {
+  var App;
+
+  App = (function() {
+    function App() {
+      this.page = ko.observable('home');
+    }
+
+    return App;
+
+  })();
+
+  window.app = new App();
+
+  window.onhashchange = function() {
+    var parts, v, vars, _i, _len, _ref;
+    vars = {};
+    _ref = location.hash.substr(1).split(',');
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      v = _ref[_i];
+      parts = v.split(':');
+      vars[parts[0]] = parts[1];
+    }
+    window.app.page(vars.page || 'home');
+    if (vars.header) {
+      return $("#" + vars.header)[0].scrollIntoView(true);
+    } else {
+      return window.scrollTo(0, 0);
+    }
+  };
+
+  ko.applyBindings(window.app);
+
+  window.onhashchange();
+
+}).call(this);
+</script></html>
