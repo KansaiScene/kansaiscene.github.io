@@ -14,7 +14,7 @@ API logos are provided in four different sizes. Select the logo that best suits 
 
 200px | 150px | 65px | 30px
 ----- | ----- | ---- | ----
-![KS logo 200px color](/images/powered-by-KS-200px_color.png) | ![KS logo 150px color](/images/powered-by-KS-150px_color.png) | ![KS logo 65px color](/images/powered-by-KS-65px_color.png) | ![KS logo 30px color](/images/powered-by-KS-30px_color.png)
+![KS logo 200px color](/images/powered-by-KS-200px-color.png) | ![KS logo 150px color](/images/powered-by-KS-150px-color.png) | ![KS logo 65px color](/images/powered-by-KS-65px-color.png) | ![KS logo 30px color](/images/powered-by-KS-30px-color.png)
 ![KS logo 200px greyscale](/images/powered-by-KS-200px.png) | ![KS logo 150px greyscale](/images/powered-by-KS-150px.png) | ![KS logo 65px greyscale](/images/powered-by-KS-65px.png) | ![KS logo 30px greyscale](/images/powered-by-KS-30px.png)
 
 

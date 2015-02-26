@@ -1,14 +1,155 @@
 //- Common mixins that templates can share
 
+mixin User
+    #user-content
+        form#user-login
+            h3
+                | Login    
+            .messages
+                .send-success
+                    | Successfully sent!
+                .successfully-reset
+                    | Successfully reset the password! Please log in.
+                .reset-request-sent
+                    | An email with a reset-link should arrive soon!
+                .signed-up
+                    | Thank you for registering. You should receive a mail to activate your account.
+                .activated
+                    | Your account has been activated! Please log in.
+            label(for="email")
+                | Email
+            input(type="text", name="email").email
+            label(for="password")
+                | Password
+            input(type="password", name="password").password
+            button(type="submit").login
+                | Login
+            a.register
+                | Sign-up
+            a.reset
+                | Forgot Password?
+            .error
+                .error-email
+                    | Please enter your email address.
+                .error-password
+                    | Please enter your password.
+                .error-responseJson
+                    | Login seems to be broken. (1)
+                .error-request
+                    | Login seems to be broken. (2)
+                .error-credentials
+                    | Invalid credentials.
+        form#user-register
+            h3
+                | Sign-up
+            label(for="email")
+                | Email
+            input(type="text", name="email").email
+            label(for="password")
+                | Password
+            input(type="password", name="password").password
+            label(for="password2")
+                | Password Confirmation
+            input(type="password", name="password2").password2
+            br
+            input(type="checkbox", name="agreed").agreed
+            label(for="agreed")
+                | I agree to the 
+                a(href="/#page:terms-of-use")
+                    | Terms of Use
+            br
+            button(type="submit").register
+                | Sign-up
+            a.cancel
+                | Cancel
+            .error
+                .error-notAgreed
+                    | Please agree to the terms (by checking the check-box).
+                .error-email
+                    | Please enter a valid email address.
+                .error-password
+                    | Please enter a password that has at least 8 characters.
+                .error-passwordNoMatch
+                    | The passwords don't match.
+                .error-userExists
+                    | This user has already be registered.
+                .error-unspecified
+                    | Could'nt register.
+        form#user-password-reset
+            h3
+                | Reset Password
+            label(for="email")
+                | Email
+            input(type="text", name="email").email
+            button(type="submit").reset
+                | Request reset
+            a.cancel
+                | Cancel
+            .error
+                .error-email
+                    | Please enter a valid email address.
+                .error-unspecified
+                    | Could'nt reset the password. Maybe the user doesn't exist?
+        form#user-password-reset-continue
+            h3
+                | New Password
+            label(for="email")
+                | Email
+            input(type="text", name="email").email
+            label(for="email")
+                | Token
+            input(type="text", name="token").token
+            label(for="password")
+                | Password
+            input(type="password", name="password").password
+            label(for="password2")
+                | Password Confirmation
+            input(type="password", name="password2").password2
+            button(type="submit").reset
+                | Change Password
+            a.cancel
+                | Cancel
+            .error
+                .error-email
+                    | Please enter a valid email address.
+                .error-password
+                    | Please enter a password that has at least 8 characters.
+                .error-passwordNoMatch
+                    | The passwords don't match.
+                .error-noToken
+                    | The token is missing.
+                .error-unspecified
+                    | Could'nt reset the password. Maybe the token is wrong?
+        #user-data
+            h3
+                | Welcome!
+            span(data-hook="email")
+            label
+                | Application Token:
+            pre(data-hook="token")
+            a.logout
+                | Logout
+            a.refresh(title="Warning! The old application token becomes invalid!")
+                | New application token
+
+mixin NavBlock(collapsible, multipage, id)
+    a.list-group-item.heading.collapsed(data-toggle="#{(collapsible ? 'collapse' : '')}", data-target="##{(multipage ? 'page:' : '') + slug(id)}-menu", href="##{(multipage ? 'page:' : '') + slug(id)}")
+        block
+
+mixin NavItem(multipage, groupId, id)
+    a.list-group-item(href="##{multipage ? 'page:' + slug(groupId) + ',header:' : ''}#{slug(groupId)}-#{slug(id)}", style="border-top-left-radius: 0; border-top-right-radius: 0")
+        block
+
 mixin Nav(multipage, collapsible)
     div.col-md-3
-        nav#nav.hidden-sm.hidden-xs.affix.nav
+        nav#nav.hidden-sm.hidden-xs.affix.nav  
+            +User
             if multipage
                 .list-group
-                    a.list-group-item.heading(href="#") Home
+                    a.list-group-item.heading(href="#") About
             each resourceGroup in api.resourceGroups
                 .list-group
-                    a.list-group-item.heading.collapsed(data-toggle="#{(collapsible ? 'collapse' : '')}", data-target="##{(multipage ? 'page:' : '') + slug(resourceGroup.name)}-menu", href="##{(multipage ? 'page:' : '') + slug(resourceGroup.name)}")
+                    +NavBlock(collapsible, multipage, resourceGroup.name)
                         if collapsible && resourceGroup.resources.length
                             span.toggle.pull-right
                                 span.open.fa.fa-angle-down
@@ -17,7 +158,7 @@ mixin Nav(multipage, collapsible)
                     div(class=collapsible ? 'collapse' : '', id="#{(multipage ? 'page:' : '') + slug(resourceGroup.name)}-menu")
                         each resource in resourceGroup.resources
                             if !condenseNav || (resource.actions.length != 1)
-                                a.list-group-item(href="##{multipage ? 'page:' + slug(resourceGroup.name) + ',header:' : ''}#{slug(resourceGroup.name)}-#{slug(resource.name)}", style="border-top-left-radius: 0; border-top-right-radius: 0")
+                                +NavItem(multipage, resourceGroup.name, resource.name)
                                     = resource.name || 'Resource'
                                 each action in resource.actions
                                     a.list-group-item(href="##{multipage ? 'page:' + slug(resourceGroup.name) + ',header:' : ''}#{slug(resourceGroup.name)}-#{slug(resource.name)}-#{slug(action.method)}", style="border-top-left-radius: 0; border-top-right-radius: 0")
@@ -25,10 +166,21 @@ mixin Nav(multipage, collapsible)
                                         span.indent
                                             = action.name || action.method + ' ' + resource.uriTemplate
                             else
-                                a.list-group-item(href="##{multipage ? 'page:' + slug(resourceGroup.name) + ',header:' : ''}#{slug(resourceGroup.name)}-#{slug(resource.name)}", style="border-top-left-radius: 0; border-top-right-radius: 0")
+                                +NavItem(multipage, resourceGroup.name, resource.name)
                                     - var action = resource.actions[0]
                                     +Icon(action.method)
                                     = resource.name || action.name || action.method + ' ' + resource.uriTemplate
+            .list-group
+                +NavBlock(collapsible, multipage, "terms-of-use")
+                    | Terms of Use
+
+            .list-group
+                +NavBlock(collapsible, multipage, "attribution")
+                    | Attribution Guidelines
+
+            .list-group
+                +NavBlock(collapsible, multipage, "branding-guide")
+                    | Branding Guide
             //-
                 each meta in api.metadata
                     if meta.name == 'HOST'
@@ -200,14 +352,17 @@ mixin Icon(method)
             span.badge
                 i.fa.fa-dot-circle-o
 
-mixin Content(getButtonClass, multipage)
-    div(data-bind=multipage ? "visible: page() == 'home'" : undefined)
-        header
-            .page-header
-                h1#top
-                    img(src="KS-logo-2014.png", title="KansaiScene", width="300")
-                    = api.name || 'API Documentation'
+mixin BindSlug(id, multipage)
+    div(data-bind=multipage ? "visible: page() == '#{slug(id)}', style: {marginTop: page() == '#{slug(id)}' ? '38px' : ''}" : undefined)&attributes(attributes)
+        block
 
+mixin Content(getButtonClass, multipage)
+    header
+        .page-header
+            h1#top
+                img(src="KS-logo-2014.png", title="KansaiScene", width="300")
+                = api.name || 'API Documentation'
+    div(data-bind=multipage ? "visible: page() == 'home'" : undefined)
         .description!= markdown(api.description)
 
         if multipage
@@ -218,11 +373,35 @@ mixin Content(getButtonClass, multipage)
             hr
 
     each resourceGroup, index in api.resourceGroups
-        div(data-bind=multipage ? "visible: page() == '#{slug(resourceGroup.name)}', style: {marginTop: page() == '#{slug(resourceGroup.name)}' ? '38px' : ''}" : undefined)
+        +BindSlug(resourceGroup.name, multipage)
             +ResourceGroup(resourceGroup, getButtonClass, multipage)
 
             if multipage
                 +Paginate(api.resourceGroups, index)
+
+
+    +BindSlug("terms-of-use", multipage)(class="additional")
+        include:md ../terms-of-use.md
+        hr
+
+    +BindSlug("attribution", multipage)(class="additional")
+        include:md ../attribution.md
+        hr
+
+    +BindSlug("branding-guide", multipage)(class="additional")
+        include:md ../branding-guide.md
+        hr
+
+    footer
+        ul
+            li
+                a(href="#page:branding-guide")="Branding Guide"
+            li
+                a(href="#page:terms-of-use")="Terms of Use"
+            li
+                a(href="#page:attribution")="Attribution Guidelines"
+            li 
+                a(href="https://kansaiscene.com", target="_blank")="KansaiScene"
 
 mixin Multipage()
     //- Multi-page support through Knockout.js

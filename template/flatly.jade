@@ -130,7 +130,32 @@ block styles
                         display none
                     span.open
                         display block
-            
+
+            #user-content
+                display none
+                padding 10px 15px
+                background #f8f8f8
+                border 2px solid #e0e0e0
+                border-radius 4px
+                margin-bottom 20px
+                h3
+                    margin-top 0
+                a
+                    display block
+                    cursor pointer
+                label
+                    display block
+                    margin-bottom 0
+                    margin-top 5px
+                button
+                    margin-top 5px
+                    margin-bottom 3px
+
+                .messages div
+                    background: #dfd
+                    padding: 5px
+                    display: block
+
             .list-group-item
                 a.collapsed
                     span.closed
@@ -148,14 +173,30 @@ block styles
                 padding-bottom 12px
                 overflow-y auto
 
+            footer
+                ul, li
+                    list-style-type: none
+                    padding: 0
+            #user-content label[for="agreed"]
+                font-weight: normal
+                display: inline-block
+                font-size: 0.9em
+                margin-left: 0.5em
+                a
+                    display: inline
+            input[type="checkbox"]
+                display: inline-block
+
+            .additional
+                h3:first-child
+                    display: none
+
+
             @media(max-width: 1199px)
                 #nav
                     max-width 212px
 
 block content
-    .user-content
-        .user-login
-        .user-signup
-        .user-data
-
     +Content('info', false)
+
+    script(src="index.js")

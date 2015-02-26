@@ -3,4 +3,498 @@ FORMAT: 1A
 
 # API Documentation
 
-Dear Developer! Thank you for coming by! Here you will find soon the API documentation for [KansaiScene](https://kansaiscene.com).
+<h1>About the Kansai Scene API</h1>
+
+The Kansai Scene API is a service for developers who want to utilize the vast and useful information related to English language events, places and articles owned by Kansai Scene to create new content.
+
+An Access Token is required to use the Kansai Scene API.
+
+<h2>Service details</h2>
+
+The Kansai Scene API includes categorized English language event information (Events), articles about various themes and aspects of life in Kansai and Japan, including the author of the work (Articles + Authors), business location listings for the Kansai area (Places) and classified advertisements (Classifieds).
+
+<h3>Provided data</h3>
+Events, Articles, Places, Classifieds, Authors.
+
+See our [Terms of Use](https://dev.kansaiscene.com/#page:terms-of-use) for licensing and restrictions and our [Attribution Guidelines](https://dev.kansaiscene.com/#page:attribution) for details on the required accreditation to Kansai Scene for content provided by this API.
+
+## Group General Information
+
+### Support [/support]
+
+If you have any problems or questions, just raise an issue in the [github repository](https://github.com/kansaiscene/kansaiscene.github.io/issues).
+
+### License [/license]
+
+This documentation is licensed under the a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+To use the API you have to agree to [our terms](https://dev.kansaiscene.com#terms).
+
+### User-Agent [/user-agent]
+
+Every request needs to have a [User Agent](http://en.wikipedia.org/wiki/User_agent) specified!
+
+### JSONP [/jsonp]
+
+It is possible to optionally append a `callback` query parameter to get the response as jsonp instead of json.
+
+### Caching significance of multiple id's
+
+For [Articles](#articles-article), [Classifieds](#/classifieds-classified) and [Events](#events-event) you have the option to pass-in multiple id's. This allows you to access a lot of data at once. The resulting data however is ordered the same way you requested it. For the best performance it is recommended that the id's are passed (if possible) in the same order.
+
+# Group Authentication
+
+To access the Kansai Scene API, you will need register at https://dev.kansaiscene.com and get an *Application Token*.
+
+With this token you will be able to lease an *Access Token*.
+
+You will need to pass the *Access Token* to any request henceforth as **request header**.
+
+Example:
+
+	$ curl https://api.kansaiscene.com/events -H "Authorization Bearer xa29.6Muxs73xSmmRmJRldyhIsMf9ri6xtHuanyyUPCdl_Ia4fBhv5N9oTrQiZaCkDOSuGhfLF4Zfjtw6fA"
+
+## Access Token [/auth]
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"access_token": "xa29.6Muxs73xSmmRmJRldyhIsMf9ri6xtHuanyyUPCdl_Ia4fBhv5N9oTrQiZaCkDOSuGhfLF4Zfjtw6fA",
+				"type": "Bearer",
+				"expires_in": 3600
+			}
+
+### Lease an Access token [POST]
+
+Leases an *Access Token* for limited use of the KansaiScene API.
+
+You need to pass the `application_token` to the API as a post-variable.
+
+
++ Request
+	
+		application_token&{application_token}
+
++ Response 200
+
+	[Access Token][]
+
++ Response 400 (application/json)
+
+		{
+			"error": "unknown-application-token"
+		}
+
+# Group Articles
+
+## Article Categories [/article-categories]
+
+*Articles* have at least one category. To show a list or tree of those
+categories we provide you with this method that allows to display the
+details more thoroughly.
+
++ Model (application/json)
+
+
+	+ Body
+
+			{
+				"data": [
+					{"id": "feature", "name": "Feature"},
+					{"id": "food-drink", "name": "Food & Drink"},
+					{"id": "travel", "name": "Travel"},
+					{"id": "made-in-kansai", "name": "Made in Kansai"},
+					{"id": "news", "name": "News"},
+					{"id": "business", "name": "Business"},
+					{"id": "kids-family", "name": "Kids & Family"},
+				]
+			}
+
+### get all article categories [GET]
+
++ Response 200
+
+	[Article Categories][]
+
+## Article [/article?id={id}(,{?id},...)]
+
+An *Article* is a document that has been written by an author.
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [{
+					"created": 1250000400000,
+					"id": "2141",
+					"title": "Making a fine point",
+					"lead": "In Sakai, the knives are a cut above. KS meets the men whose handiwork helps world-class chefs earn their stars...", 
+					"category_ids": ["made-in-kansai", "featured"],
+					"images": [{
+							"image_id": "31",
+							"comment": null
+						}, {
+							"image_id": "32",
+							"comment": null
+						}],
+					"link": {
+						"web": "http://www.kansaiscene.com/2013/10/making-a-fine-point/"
+					},
+					"author_id": "14"
+				}]
+			}
+
+# GET
+
++ Parameter
+
+	+ id (string) ... One or more (up to 50) `id`'s of articles
+
++ Response 200
+
+	[Article][]
+
+## Articles [/articles?category_id={?article_category_id}&place_id={?place_id}&orderBy={?orderBy}&newer={?newer}&older={?older}]
+
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": ["mystic-warlords-of-kaa-tournament", "lord-of-the-dance-1", "circque-de-soleil-2013-osa"]
+			}
+
+### list of Article ids [GET]
+
++ Parameters
+
+	+ article_category_id (string, optional) ... `id` of the category for which to show the articles. Needs to be a [article category](#articles-article-categories). If not given it will show all events.
+	+ place_id (string, optional) ... `id` of the place for which to show articles
+	+ orderBy = `newest_featured` (string, optional) ... Order for the articles to appear in.
+		+ Values
+			+ `newest` ... Sort by creation, newest first
+			+ `oldest` ... Sort by creation, oldest first
+			+ `newest_featured` ... Sort by date, pin featured on top.
+
+	+ newer (integer, optional) ... Show only articles that are created after the given timestamp (seconds since 1.1.1970 UTC)
+	+ older (itenger, optional) ... Show only articles that are created before a given timestamp (seconds since 1.1.1970 UTC)
+
++ Response 200
+
+	[Articles][]
+
+# Group Classifieds
+
+## Classified Category [/classified-categories]
+
+Classifieds have a category. To show a list or tree of those
+categories we provide you with this method that allows to display the
+details more thoroughly.
+
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [
+					{"id": "58", "name": "Health Beauty"},
+					{"id": "60", "name": "Beauty", "parent_id": "58"},
+					{"id": "59", "name": "Health", "parent_id": "58"},
+					{"id": "3", "name": "Jobs"},
+					{"id": "7", "name": "Education", "parent_id": "3"}
+				]
+			}
+
+
+### Get all Classified categories [GET]
+
++ Response 200
+
+	[Classified Category][]
+
+## Classified [/classified?id={classified_id}(,{?classified_id},...)]
+
+A *Classified* is an advertising that can be placed and paid-for by anyone on the internet.
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [{
+					"created": 1419924610874,
+					"id": "4510",
+					"title": "Part time english teacher",
+					"category_ids": ["7"],
+					"links": {
+						"reply": "https://kansai-scene.com/reply-to-ad/4510/part-time-english-teacher",
+						"web": "https://kansai-scene.com/show-ad/4510/part-time-english-teacher"
+					},
+					"description": "We are search for an english teacher on wednesday. From 2:00pm to 9:00pm. 12000yen a day plus transportation. Our kindergarden is in Kita-ku Osaka, about 1 min walk from Nakatsu Station."
+				}]
+			}
+
+# GET
+
++ Parameter
+
+	+ classified_id (string) ... One or more (up to 50) `id`'s of classifies that should be loaded.
+
++ Response 200 (application/json)
+
+	[Classified][]
+
+## Reply to a classified [/classified/{classified_id}/reply]
+
+
+# POST
+
+It is required to pass responders `name`, `email` and `message` as post variable to the API.
+
++ Parameter
+
+	+ classified_id (string) ... The ID of the classified to respond to.
+
++ Request (application/x-www-form-urlencoded)
+
+		name={name}&email={email}&message={message} (string)
+
++ Response 200 (application/json)
+
+		{
+			"success": true
+		}
+
+## Classifieds [/classifieds?category_id={?classified_category_id}&orderBy={?orderBy}&newer={?newer}&older={?older}]
+
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": ["4510", "6503", "15", "123", "4501"]
+			}
+
+### list of Classifieds ids [GET]
+
++ Parameters
+
+	+ classified_category_id (string, optional) ... `id` of the category for which to show the classifieds. Needs to be a [classified category](#classified-classified-categories). If not given it will show all classifieds.
+	+ orderBy = `newest` (string, optional) ... Order for the items to appear in.
+		+ Values
+			+ `newest` ... Sort by date, newest first
+			+ `oldest` ... Sort by date, oldest first
+
+	+ newer (integer, optional) ... Show only classifieds that have been created after the specified timestamp (seconds since 1.1.1970 UTC)
+	+ older (itenger, optional) ... Show only classifieds that have been created before the specified timestamp (seconds since 1.1.1970 UTC)
+
++ Response 200
+
+	[Classifieds][]
+
+# Group Events
+
+## Event Categories [/event-categories]
+
+Events have a category. To show a list or tree of those
+categories we provide you with this method that allows to display the
+details more thoroughly.
+
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [
+					{"id": "art", "name": "Art"},
+					{"id": "live", "name": "Live"},
+					{"id": "classical", "name": "Classical"},
+					{"id": "club", "name": "Club"},
+					{"id": "event", "name": "Event"},
+					{"id": "festival", "name": "Festival"},
+					{"id": "sport", "name": "Sport"},
+					{"id": "cinemas", "name": "Cinemas"},
+					{"id": "featured", "name": "Featured"}
+				]
+			}
+
+### Get all Event categories [GET]
+
++ Response 200
+
+	[Event Categories][]
+
+## Event [/event?id={id}(,{?id},...)]
+
+An *Event* represents an event happing at a time and day.
+
+Every event happens at a location that can be fetched using the [Places API](#places).
+
+Events do have a `start` and `end` time. The `end` time is never before the `start` time.
+
+The `cost` is a free-text field that the author of an event can use to define the price of an event. Often the currency is mentioned in the text. If its not mentioned it is assumed as [`JPY`](http://en.wikipedia.org/wiki/Japanese_yen). `cost` can be `null`.
+
+Every event also has categories. The available categories can be fetched using the [Event Categories API](#events-event-categories).
+
+The `images` provided in the response represent a list of images to the event. To download the images, use the [Images API](#images). Every `image` can also have a comment.
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [{
+					"created": 1250000400000,
+					"id": "mystic-warlords-of-kaa-tournament",
+					"title": "Mystic Warlords of Ka'a tournament",
+					"category_ids": ["event", "featured"],
+					"images": [{
+							"image_id": "17",
+							"comment": "Last tournament winner."
+						}, {
+							"image_id": "21",
+							"comment": null
+						}],
+					"start": 1256000400000,
+					"end": 1256007600000,
+					"place_id": "4120",
+					"cost": "",
+					"description": "Let's play the awesome cardgame in a comic shop environment. Even local celebrities will compete in the most awesome MWOK tournament around town."
+				}]
+			}
+
+# GET
+
++ Parameter
+
+	+ id (string) ... One or more (up to 50) `id`'s of events
+
++ Response 200
+
+	[Event][]
+
+## Events [/events?category_id={?event_category_id}&place_id={?place_id}&orderBy={?orderBy}&newer={?newer}&older={?older}]
+
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": ["mystic-warlords-of-kaa-tournament", "lord-of-the-dance-1", "circque-de-soleil-2013-osa"]
+			}
+
+### list of Event ids [GET]
+
++ Parameters
+
+	+ event_category_id (string, optional) ... `id` of the category for which to show the events. Needs to be a [event category](#events-event-categories). If not given it will show all events.
+	+ place_id (string, optional) ... `id` of the place for which to show events
+	+ orderBy = `newest_featured` (string, optional) ... Order for the items to appear in.
+		+ Values
+			+ `newest` ... Sort by date, newest first
+			+ `oldest` ... Sort by date, oldest first
+			+ `newest_featured` ... Sort by date, pin featured on top.
+
+	+ newer (integer, optional) ... Show only events that are created after the given timestamp (seconds since 1.1.1970 UTC)
+	+ older (itenger, optional) ... Show only events that are created before a given timestamp (seconds since 1.1.1970 UTC)
+
++ Response 200
+
+	[Events][]
+
+# Group Places
+
+## Place [/place?id={id}(,{?id},...)]
+
+An *Place* is information about a physical location at which [events](#events) can happen.
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [{
+					"created": 1250000400000,
+					"id": "4120",
+					"name": "Comic Book Store",
+					"address":"#204 (2F) Takeda building T1",
+					"address2":null,
+					"city":"Osaka",
+					"prefecture":"Suita",
+					"postal_code":"564-0062",
+					"lat":null,
+					"lng":null,
+					"email":null,
+					"telephone":"06-6389-2006",
+					"link":{
+						"web": "https:\/\/www.facebook.com\/yoshoyajp"}
+					},
+					"event_ids": ["mystic-warlords-of-kaa-tournament"]
+				}]
+			}
+
+# GET
+
++ Parameter
+
+	+ id (string) ... One or more (up to 50) `id`'s of places
+
++ Response 200
+
+	[Place][]
+
+# Group Author
+
+## Author [/author?id={id}(,{?id},...)]
+
+An *Author* is a person that wrote an article.
+
++ Model (application/json)
+
+	+ Body
+
+			{
+				"data": [{
+					"created": 1250000400000,
+					"id": "4120",
+					"name": "Sam Evans",
+					"gravatar_id": "d41e8cf98f10b234e9800998ecf8427e"
+				}]
+			}
+
+# GET
+
++ Parameter
+
+	+ id (string) ... One or more (up to 50) `id`'s of authors
+
++ Response 200
+
+	[Author][]
+
+# Group Images
+
+## Retrieve images [/image/{image_id}/{?size_format}]
+
+To get an image you need to specify the `image_id` and the `size_format`. There are currently following formats available:
+
+- `original` The biggest size in which the image is available
+- `small_banner` Fixed size 317x130 (will be cropped or streched)
+- `thumb` Fixed size 80x55 (will be cropped or stretched) 
+- `banner` Fixed size 700x370 (will be cropped or stretched)
+
+It is possible that the API will send a redirect to the actual image url.
+
+### GET
+
++ Response 302
+
+		
