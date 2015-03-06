@@ -4,7 +4,7 @@ var xhr = require('xhr')
 
 module.exports = function (options, callback) {
 	xhr({
-		uri: root + options.path,
+		uri: root + '/' + options.path,
 		method: 'post',
         withCredentials: true,
         headers: {
