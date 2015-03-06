@@ -9,4 +9,4 @@ git add .
 git commit -m "Automatic build of https://github.com/KansaiScene/kansaiscene.github.io/commit/$VERSION"
 git push -f origin
 cd ..
-git stash pop
+git stash pop || true

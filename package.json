@@ -15,7 +15,7 @@
     "deploy": "scripts/deploy.sh"
   },
   "dependencies": {
-    "aglio": "^1.14.0",
+    "aglio": "1.14.0",
     "amp-trim": "^1.0.2",
     "ampersand": "^2.0.5",
     "ampersand-model": "^4.0.3",
