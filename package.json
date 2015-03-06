@@ -6,8 +6,9 @@
   "author": "KansaiScene",
   "license": "cc-by-nc-nd",
   "scripts": {
-    "dev": "env WATCH=true npm run build & live-server . -p 8081 & echo $WATCH &\nwait",
-    "build": "npm run browserify & npm run aglio & npm run copy",
+    "dev": "env WATCH=true npm run build_watch & live-server . -p 8081 & echo $WATCH &\nwait",
+    "build_watch": "npm run browserify & npm run aglio & npm run copy",
+    "build": "npm run browserify; npm run aglio; npm run copy",
     "browserify": "bash scripts/browserify.sh",
     "aglio": "scripts/aglio.sh",
     "copy": "scripts/copy.sh",

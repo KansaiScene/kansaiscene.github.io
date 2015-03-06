@@ -4,7 +4,6 @@ git stash save --include-untracked
 rm -rf build
 git clone git@github.com:KansaiScene/kansaiscene.github.io.git -b master build
 npm run build
-sleep 20
 cd build
 git add .
 git commit -m "Automatic build of https://github.com/KansaiScene/kansaiscene.github.io/commit/$VERSION"
